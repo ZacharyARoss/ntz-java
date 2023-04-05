@@ -54,6 +54,8 @@ public final class Notez {
                 // this should give you an idea about how to TEST the Notez engine
             }else if (argv[0].equals("-f")){
                 ntzEngine.forgetDatabase(argv[1],Integer.parseInt(argv[2]));
+            } else if (argv[0].equals("-e")){
+                ntzEngine.editDatabase(argv[1], Integer.parseInt(argv[2]), argv[3]);
             }
         }
 
@@ -64,7 +66,8 @@ public final class Notez {
          * what other method calls do you need here to implement the other commands??
          */
 
-    }
+
+
 
     private void addToCategory(String category, String[] argv) {
         if (filemap.containsKey(category)){
@@ -73,6 +76,12 @@ public final class Notez {
             filemap.put(category,new NoteList(argv[argv.length-1]));
         }
 
+    }
+
+    private void editDatabase(String category, int index, String newMsg){
+    if(filemap.containsKey(category)){
+        filemap.get(category).set(index, newMsg);
+    }
     }
 
     private void forgetDatabase(String category, int index ) {
@@ -105,3 +114,4 @@ public final class Notez {
      */
 
 }
+
